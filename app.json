@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "Job Board",
+    "slug": "job-board",
+    "version": "1.0.0",
+    "backgroundColor": "#F8FAFC",
+    "primaryColor": "#2563EB",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "web": {
+      "bundler": "metro",
+      "output": "single",
+      "name": "Job Board",
+      "description": "AI-powered hiring and job search platform",
+      "themeColor": "#6366F1",
+      "lang": "en"
+    },
+    "android": {
+      "package": "com.redsitesoftware.jobBoard"
+    },
+    "ios": {
+      "bundleIdentifier": "com.redsitesoftware.jobBoard"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a7c02d46-dcf8-4929-b9b5-013fc6398856"
+      }
+    },
+    "owner": "zx10r06",
+    "description": "AI-powered hiring and job search platform"
+  }
+}
