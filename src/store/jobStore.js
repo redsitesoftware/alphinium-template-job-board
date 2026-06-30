@@ -251,7 +251,7 @@ const jobs = [
 ]
 
 const initialState = {
- phase: 'home',
+ phase: 'login',
  selectedJob: null,
  categoryFilter: 'All',
  locationFilter: 'All',
@@ -266,6 +266,8 @@ function jobReducer(state, action) {
  switch (action.type) {
  case 'SET_PHASE':
  return { ...state, phase: action.phase }
+ case 'COMPLETE_LOGIN':
+ return { ...state, phase: 'home' }
  case 'OPEN_JOB':
  return { ...state, phase: 'job', selectedJob: action.jobId }
  case 'GO_HOME':
@@ -345,6 +347,7 @@ export function JobProvider({ children }) {
  postJob: (payload) => dispatch({ type: 'POST_JOB', payload }),
  openEmployerDashboard: () => dispatch({ type: 'OPEN_EMPLOYER_DASHBOARD' }),
  setApplicationStatus: (jobId, applicantKey, status) => dispatch({ type: 'SET_APPLICATION_STATUS', jobId, applicantKey, status }),
+ completeLogin: () => dispatch({ type: 'COMPLETE_LOGIN' }),
  },
  }
  }, [state])
