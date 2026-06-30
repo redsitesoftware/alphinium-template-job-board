@@ -4,6 +4,7 @@ import { useJobStore } from '../store/jobStore'
 import HomeScreen from '../screens/HomeScreen'
 import JobScreen from '../screens/JobScreen'
 import PostJobScreen from '../screens/PostJobScreen'
+import EmployerDashboardScreen from '../screens/EmployerDashboardScreen'
 
 export default function AppNavigator() {
  const { state } = useJobStore()
@@ -13,6 +14,7 @@ export default function AppNavigator() {
  {state.phase === 'home' && <HomeScreen />}
  {state.phase === 'job' && <JobScreen />}
  {state.phase === 'post-job' && <PostJobScreen />}
+ {state.phase === 'employer-dashboard' && <EmployerDashboardScreen />}
  </View>
  )
 }

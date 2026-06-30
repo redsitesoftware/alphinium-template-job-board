@@ -35,8 +35,7 @@ function JobCard({ job, borderColor, onOpen }) {
 }
 
 export default function HomeScreen() {
- const { state, actions, categoryColors } = useJobStore()
- const filteredJobs = useMemo(() => state.jobs.filter((job) => (state.categoryFilter === 'All' || job.category === state.categoryFilter) && (state.locationFilter === 'All' || job.location === state.locationFilter)), [state.categoryFilter, state.jobs, state.locationFilter])
+ const { state, actions, categoryColors } = useJobStore() const filteredJobs = useMemo(() => state.jobs.filter((job) => (state.categoryFilter === 'All' || job.category === state.categoryFilter) && (state.locationFilter === 'All' || job.location === state.locationFilter)), [state.categoryFilter, state.jobs, state.locationFilter])
 
  return (
  <FlatList
@@ -54,7 +53,10 @@ export default function HomeScreen() {
  <Text style={styles.logo}>Jobs</Text>
  <Text style={styles.subtitle}>Discover standout roles across tech, design, marketing, and operations.</Text>
  </View>
+ <View style={styles.headerActions}>
+ <TouchableOpacity onPress={actions.openEmployerDashboard} style={styles.dashboardButton}><Text style={styles.dashboardButtonText}>📊 Employer</Text></TouchableOpacity>
  <TouchableOpacity onPress={actions.openPostJob} style={styles.postButton}><Text style={styles.postButtonText}>Post a Job</Text></TouchableOpacity>
+ </View>
  </View>
  </View>
  <Text style={styles.sectionLabel}>Category</Text>
@@ -79,6 +81,9 @@ const styles = StyleSheet.create({
  header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, padding: 20 },
  logo: { fontSize: 32, fontWeight: '800', color: '#0F172A' },
  subtitle: { marginTop: 6, maxWidth: 420, color: '#475569', lineHeight: 20 },
+ headerActions: { flexDirection: 'column', gap: 8, alignItems: 'flex-end' },
+ dashboardButton: { backgroundColor: '#EDE9FE', paddingHorizontal: 12, paddingVertical: 9, borderRadius: 12 },
+ dashboardButtonText: { color: '#7C3AED', fontWeight: '700', fontSize: 13 },
  postButton: { backgroundColor: '#2563EB', paddingHorizontal: 16, paddingVertical: 12, borderRadius: 14 },
  postButtonText: { color: '#FFFFFF', fontWeight: '700' },
  sectionLabel: { fontSize: 15, fontWeight: '700', color: '#334155', marginBottom: 10 },

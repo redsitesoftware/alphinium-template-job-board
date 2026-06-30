@@ -272,6 +272,16 @@ function jobReducer(state, action) {
  return { ...state, phase: 'home', selectedJob: null }
  case 'OPEN_POST_JOB':
  return { ...state, phase: 'post-job', selectedJob: null }
+ case 'OPEN_EMPLOYER_DASHBOARD':
+ return { ...state, phase: 'employer-dashboard', selectedJob: null }
+ case 'SET_APPLICATION_STATUS': {
+ const existing = state.applications[action.jobId]
+ if (!existing) return state
+ const updated = Array.isArray(existing)
+  ? existing.map((a) => a.applicantKey === action.applicantKey ? { ...a, status: action.status } : a)
+  : { ...existing, status: action.status }
+ return { ...state, applications: { ...state.applications, [action.jobId]: updated } }
+ }
  case 'SET_CATEGORY_FILTER':
  return { ...state, categoryFilter: action.value }
  case 'SET_LOCATION_FILTER':
@@ -333,6 +343,8 @@ export function JobProvider({ children }) {
  setLocationFilter: (value) => dispatch({ type: 'SET_LOCATION_FILTER', value }),
  submitApplication: (jobId, payload) => dispatch({ type: 'SUBMIT_APPLICATION', jobId, payload }),
  postJob: (payload) => dispatch({ type: 'POST_JOB', payload }),
+ openEmployerDashboard: () => dispatch({ type: 'OPEN_EMPLOYER_DASHBOARD' }),
+ setApplicationStatus: (jobId, applicantKey, status) => dispatch({ type: 'SET_APPLICATION_STATUS', jobId, applicantKey, status }),
  },
  }
  }, [state])
